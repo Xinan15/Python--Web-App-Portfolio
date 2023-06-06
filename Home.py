@@ -1,16 +1,42 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import streamlit as st
+import pandas as pd
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+df = pd.read_csv("data.csv", sep=";")
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+st.set_page_config(layout="wide")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+col1, col2 = st.columns(2)
+
+with col1:
+    st.image("images/photo.jpeg", width=300)
+
+with col2:
+    st.title("Xinan (Ian) Yang")
+    content = """
+    Hi, I am Ian, a computing msc graduate and a junior software developer.
+    """
+    st.info(content)
+
+content2 = """
+I have included below some apps I built so far in Python. Feel free to contact me!
+"""
+st.write(content2)
+
+col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5])
+
+
+with col3:
+    for index, row in df[:10].iterrows():
+        st.header(row["title"])
+        st.write(row["description"])
+        st.image("images/" + row["image"])
+        st.write(f"[Source Code]({row['url']})")
+
+with col4:
+    for index, row in df[10:].iterrows():
+        st.header(row["title"])
+        st.write(row["description"])
+        st.image("images/" + row["image"])
+        st.write(f"[Source Code]({row['url']})")
