@@ -34,8 +34,7 @@ with col3:
         st.header(row["title"])
         st.write(row["description"])
         st.image("images/" + row["image"])
-        st.write(f"[View]({row['url1']})")
-        st.write(f"[Source Code]({row['url2']})")
+        st.write(f"[View]({row['url']})")
 
 with col4:
     odd = df.index[df.index % 2 != 0]
@@ -44,5 +43,4 @@ with col4:
         st.header(row["title"])
         st.write(row["description"])
         st.image("images/" + row["image"])
-        st.write(f"[View]({row['url1']})")
-        st.write(f"[Source Code]({row['url2']})")
+        st.write(f"[View]({row['url']})")
