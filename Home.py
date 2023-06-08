@@ -28,15 +28,21 @@ col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5])
 
 
 with col3:
-    for index, row in df[:10].iterrows():
+    even = df.index[df.index % 2 == 0]
+    for index in even:
+        row = df.loc[index]
         st.header(row["title"])
         st.write(row["description"])
         st.image("images/" + row["image"])
-        st.write(f"[Source Code]({row['url']})")
+        st.write(f"[View]({row['url1']})")
+        st.write(f"[Source Code]({row['url2']})")
 
 with col4:
-    for index, row in df[10:].iterrows():
+    odd = df.index[df.index % 2 != 0]
+    for index in odd:
+        row = df.loc[index]
         st.header(row["title"])
         st.write(row["description"])
         st.image("images/" + row["image"])
-        st.write(f"[Source Code]({row['url']})")
+        st.write(f"[View]({row['url1']})")
+        st.write(f"[Source Code]({row['url2']})")
